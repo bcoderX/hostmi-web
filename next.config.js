@@ -4,7 +4,9 @@ const nextConfig = {
   distDir: 'out',
   images: {
     unoptimized: true
-}
+},
+output: 'export',
+  optimizeFonts: false
 }
 
 const dns = require("dns");
