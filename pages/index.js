@@ -10,9 +10,9 @@ export default function Home() {
       <NextSeo
         title="Home: Hostmi"
         description="Bienvenue. Rechercher facilement vos maisons."
-        canonical="https://hostmi.pythonanywhere.com/"
+        canonical="https://hostmi.vercel.app/"
         openGraph={{
-          url: "https://hostmi.pythonanywhere.com",
+          url: "https://hostmi.vercel.app/",
         }}
       />
       <Head>

@@ -36,8 +36,8 @@ a {
 }
 
 .clearNav {
-  backdrop-filter: saturate(180%) blur(5px) !important;
-  background-color: rgba(255, 255, 255, 0.6) !important;
+  backdrop-filter: saturate(180%) blur(5px);
+  background-color: rgba(255, 255, 255, 0.6);
 }
 
 .grr {
@@ -58,4 +58,10 @@ a {
 
 html {
   scroll-behavior: smooth;
+}
+
+
+:is(.dark .dark\:clearNavDark) {
+  backdrop-filter: saturate(180%) blur(5px);
+  background-color: rgba(23, 23, 23, 0.6);
 }

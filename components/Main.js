@@ -130,16 +130,17 @@ export default function Main() {
   };
 
   return (
-    <section className="text-gray-600 body-font">
-      {state.showModal ? <Modal onDismiss={() => setState(prev => {
+    <section className="text-gray-600 dark:bg-neutral-950 dark:text-white body-font">
+      {state.showModal ? <Modal onDismiss={() => setState(
+        prev => {
         return { ...prev, showModal: false }
       })} /> : null}
       <div ref={ref1} className={"max-w-7xl mx-auto flex px-5 py-24 md:flex-row flex-col items-center transition-transform ease-out duration-1000 "+(isVisible1 ? "translate-y-0": "translate-y-12")}>
         <div className="lg:flex-grow md:w-1/2 md:ml-24 pt-6 flex flex-col md:items-start md:text-left mb-40 items-center text-center animate-fade-right">
-          <h1 className="mb-5 sm:text-6xl text-5xl items-center Avenir xl:w-2/2 text-gray-900">
+          <h1 className="mb-5 dark:text-gray-100 sm:text-6xl text-5xl items-center Avenir xl:w-2/2 text-gray-900">
             Nous rendons les recherches de maison <span className="inline-block animate-fade-up animate-infinite animate-ease-out animate-duration-[1500] text-red-900 transition-all ">{currentAdvantage}</span>.
           </h1>
-          <p ref={ref2} className={"mb-4 xl:w-3/4 text-gray-600 text-lg transition-transform ease-out duration-1000 "+(isVisible2 ? "translate-y-0": "translate-y-12")} >
+          <p ref={ref2} className={"mb-4 xl:w-3/4 text-gray-600 dark:text-gray-200 text-lg transition-transform ease-out duration-1000 "+(isVisible2 ? "translate-y-0": "translate-y-12")} >
             Hostmi est une application mobile entièrement burkinabé qui vous permettra de rechercher des maisons à louer partout au Burkina Faso et en Afrique sans vous déplacer.
           </p>
           <div ref={ref3} className={"flex justify-center transition-transform ease-out duration-1000 "+(isVisible3 ? "translate-y-0": "translate-y-12")}>
@@ -172,7 +173,7 @@ export default function Main() {
             <div className="px-6 py-4">
               <div className="font-bold text-xl mb-2 text-orange-600">HostMI pour les  promoteurs immobiliers</div>
               <div>
-                <ul role="list" className="list-disc text-gray-700 text-base pl-4">
+                <ul role="list" className="list-disc dark:text-gray-400 text-gray-700 text-base pl-4">
                   <li>Publiez en 2 clics</li>
                   <li>Louer rapidement</li>
                   <li>Des locataires dignes de confiance</li>
@@ -190,7 +191,7 @@ export default function Main() {
             <div className="px-6 py-4">
               <div className="font-bold text-xl mb-2 text-blue-600">HostMI pour les locataires</div>
               <div>
-                <ul role="list" className="list-disc text-gray-700 text-base pl-4">
+                <ul role="list" className="list-disc dark:text-gray-400 text-gray-700 text-base pl-4">
                   <li>Une large sélection de maisons</li>
                   <li>Éviter les visites inutiles</li>
                   <li>Éviter l&#39;errance</li>
@@ -209,7 +210,7 @@ export default function Main() {
       <section ref={ref8} className={"mx-auto transition-transform ease-out duration-1000 "+(isVisible8 ? "translate-y-0": "translate-y-12")}>
         <div className="container px-5 mx-auto lg:px-24 ">
           <div className="flex flex-col w-full mb-4 text-left lg:text-center">
-            <h1 className="mb-8 text-2xl Avenir font-semibold text-black">
+            <h1 className="mb-8 text-2xl Avenir font-semibold dark:text-gray-200 text-black">
               Entreprises Partenaires
             </h1>
           </div>
@@ -246,10 +247,10 @@ export default function Main() {
         </div>
       </section>
       <div className="grr max-w-7xl pt-20 mx-auto text-center">
-        <h1 ref={ref9} className={"mb-8 text-6xl Avenir font-semibold text-gray-900 transition-transform ease-out duration-1000 "+(isVisible9 ? "translate-y-0": "translate-y-12")}>
+        <h1 ref={ref9} className={"mb-8 text-6xl Avenir font-semibold dark:text-gray-200 text-gray-900 transition-transform ease-out duration-1000 "+(isVisible9 ? "translate-y-0": "translate-y-12")}>
           Accomplir plus, avec moins d&#39;effort.
         </h1>
-        <h1 className="mb-8 text-2xl Avenir font-semibold text-gray-600 text-center">
+        <h1 className="mb-8 text-2xl Avenir font-semibold dark:text-gray-400 text-gray-600 text-center">
           Evitez les deplacements inutiles et coûteux. Traitez avec des gens de confiance.
         </h1>
         <div className="container flex flex-col items-center justify-center mx-auto rounded-lg ">
@@ -263,41 +264,41 @@ export default function Main() {
       <section className="relative" id="register">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 text-center">
           <div className="py-24 md:py-36">
-            <h1 className="mb-5 text-6xl Avenir font-semibold text-gray-900">
+            <h1 className="mb-5 text-6xl Avenir font-semibold dark:text-gray-200 text-gray-900">
               Inscrivez vous pour le test
             </h1>
-            <h1 className="mb-9 text-2xl font-semibold text-gray-600">
+            <h1 className="mb-9 text-2xl font-semibold dark:text-gray-400 text-gray-600">
               Obtenez des bonus exclusifs en faisant partie des premiers utilisateurs de notre application.
             </h1>
             <div className="py-8 lg:py-16 px-4 mx-auto bg-transparent rounded-md max-w-screen-md">
               <form onSubmit={handleSubmit} action="#" className="space-y-8">
                 <div>
-                  <label htmlFor="name" className="block text-start mb-2 font-medium text-gray-900 ">Votre nom complet <span className="text-red-500">*</span></label>
-                  <input onChange={handleChange} value={state.name} type="text" id="name" name="name" className="w-full p-3 border border-gray-600 pr-2 pl-2 py-3 mt-2 rounded-md text-gray-800 font-semibold hover:border-gray-900" placeholder="Nom et prénom(s)" required>
+                  <label htmlFor="name" className="block text-start mb-2 font-medium dark:text-gray-200 text-gray-900 ">Votre nom complet <span className="text-red-500">*</span></label>
+                  <input onChange={handleChange} value={state.name} type="text" id="name" name="name" className="w-full p-3 border border-gray-600 pr-2 pl-2 py-3 mt-2 rounded-md dark:bg-neutral-800 dark:text-gray-200 text-gray-800 font-semibold hover:border-gray-900" placeholder="Nom et prénom(s)" required>
                   </input>
                 </div>
                 <div>
-                  <label htmlFor="email" className="block text-start mb-2 font-medium text-gray-900 ">Votre email <span className="text-red-500">*</span></label>
-                  <input onChange={handleChange} value={state.email} type="email" id="email" name="email" className="w-full p-3 border border-gray-600 pr-2 pl-2 py-3 mt-2 rounded-md text-gray-800 font-semibold hover:border-gray-900" placeholder="utilistateur@gmail.com" required>
+                  <label htmlFor="email" className="block text-start mb-2 font-medium dark:text-gray-200 text-gray-900 ">Votre email <span className="text-red-500">*</span></label>
+                  <input onChange={handleChange} value={state.email} type="email" id="email" name="email" className="w-full p-3 border border-gray-600 pr-2 pl-2 py-3 mt-2 rounded-md dark:bg-neutral-800 dark:text-gray-200 text-gray-800 font-semibold hover:border-gray-900" placeholder="utilistateur@gmail.com" required>
                   </input>
                 </div>
                 <div>
-                  <label htmlFor="phone" className="block text-start mb-2 font-medium text-gray-900 ">Votre numéro WhatsApp <span className="text-red-500">*</span></label>
-                  <input onChange={handleChange} value={state.phone} name="phone" type="text" id="phone" className="block p-3 w-full border border-gray-600 pr-2 pl-2 py-3 mt-2 rounded-md text-gray-800 font-semibold hover:border-gray-900" placeholder="+22664260325" required>
+                  <label htmlFor="phone" className="block text-start mb-2 font-medium dark:text-gray-200 text-gray-900 ">Votre numéro WhatsApp <span className="text-red-500">*</span></label>
+                  <input onChange={handleChange} value={state.phone} name="phone" type="text" id="phone" className="block p-3 w-full border border-gray-600 pr-2 pl-2 py-3 mt-2 rounded-md dark:bg-neutral-800 dark:text-gray-200 text-gray-800 font-semibold hover:border-gray-900" placeholder="+22664260325" required>
                   </input>
                 </div>
                 <div className="sm:col-span-2">
-                  <label htmlFor="message" className="block text-start mb-2 font-medium text-gray-900 ">Nous laisser un message (facultatif)</label>
-                  <textarea onChange={handleChange} value={state.message} name="message" id="message" rows="6" className="block p-2.5 w-full border border-gray-600 pr-2 pl-2 py-3 mt-2 rounded-md text-gray-800 font-semibold hover:border-gray-900 " placeholder="Votre message...."></textarea>
+                  <label htmlFor="message" className="block text-start mb-2 font-medium dark:text-gray-200 text-gray-900 ">Nous laisser un message (facultatif)</label>
+                  <textarea onChange={handleChange} value={state.message} name="message" id="message" rows="6" className="block p-2.5 w-full border border-gray-600 pr-2 pl-2 py-3 mt-2 rounded-md dark:bg-neutral-800 dark:text-gray-200 text-gray-800 font-semibold hover:border-gray-900 " placeholder="Votre message...."></textarea>
                 </div>
                 <div>
-                <label htmlFor="message" className="block text-start mb-2 font-medium text-gray-900 ">Dans quel cas êtes vous ?</label>
+                <label htmlFor="message" className="block text-start mb-2 font-medium dark:text-gray-200 text-gray-900 ">Dans quel cas êtes vous ?</label>
                 <div className="flex md:flex-row flex-col">
                   <div className="p-2">
-                  <div onClick={()=>setRole("promoteur")} className={"max-w-sm px-8 py-4 bg-gray-200 mr-auto rounded-md "+ (role!="locataire" ? "border border-orange-600": "")}>Je suis promoteur immobilier</div>
+                  <div onClick={()=>setRole("promoteur")} className={"cursor-pointer max-w-sm px-8 py-4 bg-gray-200 dark:bg-neutral-800 dark:text-gray-200 mr-auto rounded-md "+ (role!="locataire" ? "border border-orange-600": "")}>Je suis promoteur immobilier</div>
                   </div>
                   <div className="p-2">
-                  <div onClick={()=>setRole("locataire")} className={"max-w-sm px-8 py-4 bg-gray-200 mr-auto rounded-md "+ (role=="locataire" ? "border border-blue-600": "")}>Je suis locataire</div>
+                  <div onClick={()=>setRole("locataire")} className={"cursor-pointer max-w-sm px-8 py-4 bg-gray-200 dark:bg-neutral-800 dark:text-gray-200 mr-auto rounded-md "+ (role=="locataire" ? "border border-blue-600": "")}>Je suis locataire</div>
                   </div>
                 </div>
                 </div>
