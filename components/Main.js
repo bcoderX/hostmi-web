@@ -307,7 +307,7 @@ export default function Main() {
                 {
                   role=="locataire" ?
                   <div className="text-left animate-fade-down">
-                  <label htmlFor="email" className="text-start ml-3 mb-2 font-medium dark:text-gray-200 text-gray-900 ">Êtes vous actuellement à la recherche d'une maison ?</label>
+                  <label htmlFor="email" className="text-start ml-3 mb-2 font-medium dark:text-gray-200 text-gray-900 ">Êtes vous actuellement à la recherche d&#39;une maison ?</label>
                   <div className="flex">
                   <div className="p-2">
                   <div onClick={()=>setSearching(true)} className={"cursor-pointer max-w-sm px-8 py-4 bg-gray-200 dark:bg-neutral-800 dark:text-gray-200 mr-auto rounded-md "+ (searching ? "border border-green-500": "")}>Oui</div>
