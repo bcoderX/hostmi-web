@@ -6,7 +6,7 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+  font-family: "AvenirNextW10-Bold", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   background-color: white;
 }
@@ -31,7 +31,7 @@ a {
 }
 
 .Avenir {
-  font-family: Roboto;
+  font-family: "AvenirNextW10-Bold", Roboto;
   font-display: swap;
 }
 

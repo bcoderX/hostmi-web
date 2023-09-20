@@ -41,7 +41,7 @@ function useInterval(callback, delay) {
 }
 
 export default function Main() {
-  const supabase = createClientComponentClient();
+  const supabase = createClientComponentClient({options: { db: { schema: "real_estate_developer"} }});
   const [loading, setLoading] = useState(false);
   const [state, setState] = useState({
     name: "",
@@ -49,6 +49,7 @@ export default function Main() {
     phone: "",
     message: "",
     showModal: false,
+    searching: false,
     error: false,
     errorMessage: "Vérifiez votre connexion internet.",
   });
@@ -72,7 +73,7 @@ export default function Main() {
   const ref9 = useRef();
   const isVisible9 = useIsVisible(ref9);
 //end refs
-  const advantages = ["faciles", "sécurisées", "moins chères"];
+  const advantages = ["faciles", "sécurisées", "abordables"];
   const [currentAdvantage, setCurrentAdvantage] = useState(advantages[0])
 
   var counter = 0;
@@ -85,6 +86,7 @@ export default function Main() {
     }, 1500);
 
   const [role, setRole]= useState("locataire");
+  const [searching, setSearching]= useState(false);
 
   const handleChange = e => {
     const key = e.target.name;
@@ -100,9 +102,9 @@ export default function Main() {
     //alert("Submitted");
     setLoading(true);
     const { data, error } = await supabase
-      .from('facebook_surveys')
+      .from('agencies')
       .insert([
-        { full_name: state.name, email: state.email, phone: state.phone, message: state.message, role: role },
+        { full_name: state.name, email: state.email, phone: state.phone, message: state.message, role: role, searching_house: searching },
       ])
       .select();
       setLoading(false);
@@ -138,17 +140,17 @@ export default function Main() {
       <div ref={ref1} className={"max-w-7xl mx-auto flex px-5 py-24 md:flex-row flex-col items-center transition-transform ease-out duration-1000 "+(isVisible1 ? "translate-y-0": "translate-y-12")}>
         <div className="lg:flex-grow md:w-1/2 md:ml-24 pt-6 flex flex-col md:items-start md:text-left mb-40 items-center text-center animate-fade-right">
           <h1 className="mb-5 dark:text-gray-100 sm:text-6xl text-5xl items-center Avenir xl:w-2/2 text-gray-900">
-            Nous rendons les recherches de maison <span className="inline-block animate-fade-up animate-infinite animate-ease-out animate-duration-[1500] text-red-900 transition-all ">{currentAdvantage}</span>.
+            Nous rendons les recherches de maison <span className="block animate-fade-up animate-infinite animate-ease-out animate-duration-[1500] text-red-900 transition-all ">{currentAdvantage}</span>
           </h1>
           <p ref={ref2} className={"mb-4 xl:w-3/4 text-gray-600 dark:text-gray-200 text-lg transition-transform ease-out duration-1000 "+(isVisible2 ? "translate-y-0": "translate-y-12")} >
-            Hostmi est une application mobile entièrement burkinabé qui vous permettra de rechercher des maisons à louer partout au Burkina Faso et en Afrique sans vous déplacer.
+            Hostmi est une application mobile qui vous permet de rechercher des maisons à louer partout au Burkina Faso et en Afrique sans vous déplacer.
           </p>
           <div ref={ref3} className={"flex justify-center transition-transform ease-out duration-1000 "+(isVisible3 ? "translate-y-0": "translate-y-12")}>
             <a
               className="inline-flex items-center px-5 py-3 mt-2 font-medium text-white transition duration-500 ease-out-out transform border rounded-lg bg-red-900"
               href="#register"
             >
-              <span className="justify-center">S&#39;inscrire pour le test</span>
+              <span className="justify-center">S&#39;inscrire pour les offres</span>
             </a>
           </div>
         </div>
@@ -183,7 +185,7 @@ export default function Main() {
               </div>
             </div>
             <div className="px-6 pt-4 pb-4">
-            <a className="inline-block bg-orange-600 text-white rounded-md px-3 py-1 text-sm font-semibold mr-2 mb-2" onClick={()=>setRole("promoteur")} href="#register">S&#39;inscrire en tant que promoteur immobilier</a>
+            <a className="inline-block bg-orange-600 text-white rounded-md px-3 py-1 text-sm font-semibold mr-2 mb-2" onClick={()=>{setRole("promoteur"); setSearching(false);}} href="#register">S&#39;inscrire en tant que promoteur immobilier</a>
             </div>
           </div>
           <div ref={ref7} className={"max-w-sm my-5 rounded overflow-hidden shadow-lg transition-transform ease-out duration-1000 "+(isVisible7 ? "translate-y-0": "translate-y-12")}>
@@ -265,7 +267,7 @@ export default function Main() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 text-center">
           <div className="py-24 md:py-36">
             <h1 className="mb-5 text-6xl Avenir font-semibold dark:text-gray-200 text-gray-900">
-              Inscrivez vous pour le test
+              Inscrivez vous pour les offres
             </h1>
             <h1 className="mb-9 text-2xl font-semibold dark:text-gray-400 text-gray-600">
               Obtenez des bonus exclusifs en faisant partie des premiers utilisateurs de notre application.
@@ -295,13 +297,27 @@ export default function Main() {
                 <label htmlFor="message" className="block text-start mb-2 font-medium dark:text-gray-200 text-gray-900 ">Dans quel cas êtes vous ?</label>
                 <div className="flex md:flex-row flex-col">
                   <div className="p-2">
-                  <div onClick={()=>setRole("promoteur")} className={"cursor-pointer max-w-sm px-8 py-4 bg-gray-200 dark:bg-neutral-800 dark:text-gray-200 mr-auto rounded-md "+ (role!="locataire" ? "border border-orange-600": "")}>Je suis promoteur immobilier</div>
+                  <div onClick={()=>{setRole("promoteur"); setSearching(false)}} className={"cursor-pointer max-w-sm px-8 py-4 bg-gray-200 dark:bg-neutral-800 dark:text-gray-200 mr-auto rounded-md "+ (role!="locataire" ? "border border-orange-600": "")}>Je suis promoteur immobilier</div>
                   </div>
                   <div className="p-2">
                   <div onClick={()=>setRole("locataire")} className={"cursor-pointer max-w-sm px-8 py-4 bg-gray-200 dark:bg-neutral-800 dark:text-gray-200 mr-auto rounded-md "+ (role=="locataire" ? "border border-blue-600": "")}>Je suis locataire</div>
                   </div>
                 </div>
                 </div>
+                {
+                  role=="locataire" ?
+                  <div className="text-left animate-fade-down">
+                  <label htmlFor="email" className="text-start ml-3 mb-2 font-medium dark:text-gray-200 text-gray-900 ">Êtes vous actuellement à la recherche d'une maison ?</label>
+                  <div className="flex">
+                  <div className="p-2">
+                  <div onClick={()=>setSearching(true)} className={"cursor-pointer max-w-sm px-8 py-4 bg-gray-200 dark:bg-neutral-800 dark:text-gray-200 mr-auto rounded-md "+ (searching ? "border border-green-500": "")}>Oui</div>
+                  </div>
+                  <div className="p-2">
+                  <div onClick={()=>setSearching(false)} className={"cursor-pointer max-w-sm px-8 py-4 bg-gray-200 dark:bg-neutral-800 dark:text-gray-200 mr-auto rounded-md "+ (!searching ? "border border-red-500": "")}>Non</div>
+                  </div>
+                  </div>
+                </div> : null
+                }
                 {state.error ? <div className="w-full bg-red-100">
                   <div className="p-2">
                     <div className="flex">
