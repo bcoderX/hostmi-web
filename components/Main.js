@@ -41,7 +41,7 @@ function useInterval(callback, delay) {
 }
 
 export default function Main() {
-  const supabase = createClientComponentClient({options: { db: { schema: "real_estate_developer"} }});
+  const supabase = createClientComponentClient();
   const [loading, setLoading] = useState(false);
   const [state, setState] = useState({
     name: "",
@@ -102,7 +102,7 @@ export default function Main() {
     //alert("Submitted");
     setLoading(true);
     const { data, error } = await supabase
-      .from('agencies')
+      .from('facebook_surveys')
       .insert([
         { full_name: state.name, email: state.email, phone: state.phone, message: state.message, role: role, searching_house: searching },
       ])
