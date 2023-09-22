@@ -280,8 +280,8 @@ export default function Main() {
                   </input>
                 </div>
                 <div>
-                  <label htmlFor="email" className="block text-start mb-2 font-medium dark:text-gray-200 text-gray-900 ">Votre email <span className="text-red-500">*</span></label>
-                  <input onChange={handleChange} value={state.email} type="email" id="email" name="email" className="w-full p-3 border border-gray-600 pr-2 pl-2 py-3 mt-2 rounded-md dark:bg-neutral-800 dark:text-gray-200 text-gray-800 font-semibold hover:border-gray-900" placeholder="utilistateur@gmail.com" required>
+                  <label htmlFor="email" className="block text-start mb-2 font-medium dark:text-gray-200 text-gray-900 ">Votre email (facultatif)</label>
+                  <input onChange={handleChange} value={state.email} type="email" id="email" name="email" className="w-full p-3 border border-gray-600 pr-2 pl-2 py-3 mt-2 rounded-md dark:bg-neutral-800 dark:text-gray-200 text-gray-800 font-semibold hover:border-gray-900" placeholder="utilistateur@gmail.com" >
                   </input>
                 </div>
                 <div>
